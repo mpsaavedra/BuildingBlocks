@@ -2,6 +2,9 @@
 
 namespace Orun.Helpers
 {
+    /// <summary>
+    /// A very simple helper class to generate random strings
+    /// </summary>
     public class RandomGenerator
     {
         private static Random _rand = new Random();

@@ -2,6 +2,9 @@
 
 namespace Orun.Extensions
 {
+    /// <summary>
+    /// <see cref="Action{T}"/> extensions
+    /// </summary>
     public static class ActionExtensions
     {
         /// <summary>
@@ -13,7 +16,7 @@ namespace Orun.Extensions
         /// <param name="overrideDefaultOptions">options to overrider with.</param>
         /// <returns>TOptions | ApplicationException: if action is null.</returns>
         public static TOptions ConfigureOrDefault<TOptions>(this Action<TOptions>? action,
-            TOptions overrideDefaultOptions = null)
+            TOptions overrideDefaultOptions = null!)
             where TOptions : class, new()
         {
             overrideDefaultOptions ??= new TOptions();

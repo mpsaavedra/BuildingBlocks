@@ -12,13 +12,8 @@ namespace Orun.Domain
         /// </summary>
         public BusinessEntity()
         {
-            Modified = DateTime.Now;
             Deleted = false;
         }
-
-        /// <inheritdoc cref="IBusinessEntity{TKey}.Modified"/>
-        [JsonPropertyName("modified")]
-        public DateTime Modified { get; set; }
 
         /// <inheritdoc cref="IBusinessEntity{TKey}.Deleted"/>
         [JsonPropertyName("deleted")]

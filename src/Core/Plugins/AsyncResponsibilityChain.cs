@@ -8,7 +8,7 @@ namespace Orun.Plugins
         : BaseMiddlewareFlow<IAsyncMiddleware<TParameter, TReturn>>,
             IAsyncResponsibilityChain<TParameter, TReturn>
     {
-        private Func<TParameter, Task<TReturn>> _finallyFunc;
+        private Func<TParameter, Task<TReturn>>? _finallyFunc = null;
 
         /// <summary>
         /// Creates a new asynchronous chain of responsibility.
@@ -52,10 +52,10 @@ namespace Orun.Plugins
         public async Task<TReturn> Execute(TParameter parameter)
         {
             if (MiddlewareTypes.Count == 0)
-                return default(TReturn);
+                return default(TReturn)!;
 
             int index = 0;
-            Func<TParameter, Task<TReturn>> func = null;
+            Func<TParameter, Task<TReturn>> func = null!;
             func = (param) =>
             {
                 var type = MiddlewareTypes[index];
@@ -66,7 +66,7 @@ namespace Orun.Plugins
                 // the "next" function is assigned to the finally function or a 
                 // default empty function.
                 if (index == MiddlewareTypes.Count)
-                    func = this._finallyFunc ?? ((p) => Task.FromResult(default(TReturn)));
+                    func = this._finallyFunc ?? ((p) => Task.FromResult(default(TReturn))!);
 
                 return middleware.Run(param, func);
             };
@@ -77,7 +77,7 @@ namespace Orun.Plugins
         /// <summary>
         /// Sets the function to be executed at the end of the chain as a fallback.
         /// A chain can only have one finally function. Calling this method more
-        /// a second time will just replace the existing finally <see cref="Func{TParameter, TResult}<"/>.
+        /// a second time will just replace the existing finally <see cref="Func{TParameter, TResult}"/>
         /// </summary>
         /// <param name="finallyFunc">The function that will be execute at the end of chain.</param>
         /// <returns>The current instance of <see cref="IAsyncResponsibilityChain{TParameter, TReturn}"/>.</returns>

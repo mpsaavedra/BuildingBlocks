@@ -5,9 +5,20 @@ using Orun.Plugins.Resolver;
 
 namespace Orun.Plugins
 {
+    /// <summary>
+    /// base implementation of the middleware flow resolver
+    /// </summary>
+    /// <typeparam name="TMiddleware"></typeparam>
     public abstract class BaseMiddlewareFlow<TMiddleware>
     {
+#pragma warning disable CS1591
         protected IList<Type> MiddlewareTypes { get; private set; }
+#pragma warning restore CS1591
+        
+        /// <summary>
+        /// returns the <see cref="IMiddlewareResolver"/> implementation used to resolve the
+        /// middleware types 
+        /// </summary>
         protected IMiddlewareResolver MiddlewareResolver { get; private set; }
 
         internal BaseMiddlewareFlow(IMiddlewareResolver middlewareResolver)

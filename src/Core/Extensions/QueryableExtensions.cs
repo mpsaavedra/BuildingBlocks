@@ -64,7 +64,7 @@ namespace Orun.Extensions
         /// <param name="queryable"><see cref="IQueryable{T}"/> to filter.</param>
         /// <param name="where">filter predicate to apply.</param>
         /// <returns>List with applied filter.</returns>
-        public static IQueryable<T> ToWhere<T>(this IQueryable<T> queryable, Expression<Func<T, bool>> where = null)
+        public static IQueryable<T> ToWhere<T>(this IQueryable<T> queryable, Expression<Func<T, bool>> where = null!)
             where T : class
         {
             if (where != default)
@@ -232,9 +232,9 @@ namespace Orun.Extensions
         }
         
         /// <summary>
-        /// 
+        /// returns the ordered and paged list of entities
         /// </summary>
-        /// <param name="list">this list of elements to order</param>
+        /// <param name="entities">this list of elements to order</param>
         /// <param name="sortBy"></param>
         /// <param name="order"></param>
         /// <param name="ascending"></param>
@@ -248,11 +248,21 @@ namespace Orun.Extensions
             return entities.ToPaged(sortBy, ascending, offset, take);
         }
         
-        public static IQueryable<T> GetEntityOrdered<T>(this IQueryable<T> list, string sortBy,
+        /// <summary>
+        /// return the paged and ordered list of entities
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <param name="sortBy"></param>
+        /// <param name="order"></param>
+        /// <param name="offset"></param>
+        /// <param name="take"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static IQueryable<T> GetEntityOrdered<T>(this IQueryable<T> entities, string sortBy,
             string order, int offset, int take)
         {
 
-            return list.ToPaged(sortBy, true, offset, take);
+            return entities.ToPaged(sortBy, true, offset, take);
         }
     }
 }

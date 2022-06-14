@@ -42,7 +42,7 @@ namespace Orun.Extensions
         /// <returns></returns>
         public static TSource PopulateWithMappedData<TSource>(this TSource source, object mappedData)
         {
-            foreach (var dbProperty in source.GetType().GetProperties())
+            foreach (var dbProperty in source!.GetType().GetProperties())
             {
                 if(mappedData.GetType().GetProperties().Any(p => p.Name == dbProperty.Name))
                 {

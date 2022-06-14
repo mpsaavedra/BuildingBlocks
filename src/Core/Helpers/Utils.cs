@@ -2,6 +2,9 @@
 
 namespace Orun.Helpers
 {
+    /// <summary>
+    /// Some basic utils, do not know where else to put them ;D
+    /// </summary>
     public static class Utils
     {
         /// <summary>

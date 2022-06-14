@@ -2,6 +2,9 @@
 
 namespace Orun.Extensions
 {
+    /// <summary>
+    /// <see cref="DbContext"/> extensions
+    /// </summary>
     public static class DbContextExtensions
     {
         /// <summary>

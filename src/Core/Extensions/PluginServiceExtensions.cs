@@ -5,6 +5,9 @@ using Orun.Services;
 
 namespace Orun.Extensions
 {
+    /// <summary>
+    /// <see cref="PluginService"/> extensions
+    /// </summary>
     public static class PluginServiceExtensions
     {
         /// <summary>

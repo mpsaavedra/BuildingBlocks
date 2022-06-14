@@ -52,7 +52,6 @@ namespace Orun.Services
         /// </summary>
         /// <param name="pluginFile"></param>
         /// <param name="sharedTypes"></param>
-        /// <exception cref="PluginNotLoadedException"></exception>
         public void LoadPlugin(string pluginFile, Type[] sharedTypes)
         {
             try
@@ -68,7 +67,7 @@ namespace Orun.Services
                     if (typeof(IMiddlewarePlugin).IsAssignableFrom(type))
                     {
                         IMiddlewarePlugin? plugin = (IMiddlewarePlugin) Activator.CreateInstance(type)!;
-                        AddMiddlewarePlugin(plugin.EventCode, plugin);
+                        AddMiddlewarePlugin(plugin.EventCode!, plugin);
                     }
                     else
                     {
@@ -88,7 +87,6 @@ namespace Orun.Services
         /// </summary>
         /// <param name="pluginsDirectory"></param>
         /// <param name="sharedTypes"></param>
-        /// <exception cref="PluginNotLoadedException"></exception>
         public void LoadPlugins(string pluginsDirectory, Type[] sharedTypes)
         {
             try
@@ -111,7 +109,6 @@ namespace Orun.Services
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
-        /// <exception cref="PluginCouldNotConfigureException"></exception>
         private IServiceCollection ConfigurePlugins(IServiceCollection services)
         {
             try
@@ -141,7 +138,6 @@ namespace Orun.Services
         /// </summary>
         /// <param name="app"></param>
         /// <returns></returns>
-        /// <exception cref="PluginCouldNotConfigureException"></exception>
         public IApplicationBuilder ConfigurePlugins(IApplicationBuilder app)
         {
             try

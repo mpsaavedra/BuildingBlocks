@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Orun;
 using Shouldly;
 using Tests.BuildingBlocks.Fakes;
@@ -28,8 +29,8 @@ namespace Tests.BuildingBlocks
             _dbContext.FakeEntities.Add(new FakeEntity { Id = 5, Name = "Fake 5"});
             _dbContext.SaveChanges();
 
-            // servicesProvider = new ServiceCollection();
-            // var sc = new ServiceCollection();
+            servicesProvider = new ServiceCollection()
+                .BuildServiceProvider();
         }
 
         [Fact]

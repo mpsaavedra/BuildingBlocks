@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Orun.Extensions
 {
+    /// <summary>
+    /// <see cref="IEnumerable{T}"/> extensions
+    /// </summary>
     public static class EnumerableExtensions
     {
 

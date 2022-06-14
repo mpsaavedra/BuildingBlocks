@@ -102,8 +102,9 @@ namespace Orun
                 }
                 else
                 {
-                    info = t.GetConstructor(new[] { typeof(string) });
+                    info = t.GetConstructor(new[] { typeof(string) })!;
 
+                    // ReSharper disable once ConditionIsAlwaysTrueOrFalse
                     if (info != null)
                     {
                         EncounteredExceptionTypes[t] = info;
@@ -157,7 +158,7 @@ namespace Orun
                 }
                 else
                 {
-                    info = t.GetConstructor(new[] { typeof(string) });
+                    info = t.GetConstructor(new[] { typeof(string) })!;
 
                     if (info != null)
                     {

@@ -2,6 +2,9 @@
 
 namespace Orun.Extensions
 {
+    /// <summary>
+    /// <see cref="ConsoleColor"/> extensions
+    /// </summary>
     public static class ConsoleColorExtensions
     {
         /// <summary>

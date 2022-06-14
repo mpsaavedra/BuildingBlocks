@@ -19,6 +19,10 @@ namespace Orun.Plugins
         Task<TReturn> Run(TParameter parameter, Func<TParameter, Task<TReturn>> next);
     }
 
+    /// <summary>
+    /// defines the basic structure of an async middleware
+    /// </summary>
+    /// <typeparam name="TParameter"></typeparam>
     public interface IAsyncMiddleware<TParameter>
     {
         /// <summary>

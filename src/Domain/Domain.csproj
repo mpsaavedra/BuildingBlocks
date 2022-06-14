@@ -1,13 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Orun.BuildingBlocks.Domain</AssemblyName>
     <RootNamespace>Orun.BuildingBlocks.Domain</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <PackageId>Orun.BuildingBlocks.Domain</PackageId>
-    <Authors>Orun Innovations LLC</Authors>
   </PropertyGroup>
 
   <ItemGroup>

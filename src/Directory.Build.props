@@ -1,0 +1,117 @@
+<!-- Reference: https://docs.microsoft.com/es-es/visualstudio/msbuild/common-msbuild-project-properties?view=vs-2019  -->
+
+<Project>
+    <PropertyGroup>
+        <IsTestsProject>$(MSBuildProjectName.Contains('Tests'))</IsTestsProject>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <Authors>Orun Innovations LLC</Authors>
+        <Owners>Orun Innovations LLC</Owners>
+        <Version>0.8.102</Version>
+        <Copyright>Copyright © $([System.DateTime]::Now.Year) by Orun Innovations LLC. All rights reserved.</Copyright>
+<!--        <ApplicationIcon>$(SolutionDir)docs\images\logo.ico</ApplicationIcon>-->
+        <PackageId>$(AssemblyName)</PackageId>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+<!--        <PackageLicenseUrl>$(SolutionDir)LICENSE.txt</PackageLicenseUrl>-->
+        <License>$(SolutionDir)LICENSE.txt</License>
+        <PackageLicenseType>file</PackageLicenseType>
+        <PackageIconUrl>logo.png</PackageIconUrl>
+        <PackageIcon>logo.png</PackageIcon>
+        <PackageProjectUrl>https://github.com/mpsaavedra/BuildingBlocks/</PackageProjectUrl>
+        <PackageReleaseNotes>https://github.com/mpsaavedra/BuildingBlocks/tree/master/docs/RELEASE_NOTES.txt</PackageReleaseNotes>
+        <RepositoryUrl>https://github.com/mpsaavedra/BuildingBlocks</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageOutputPath>$(SolutionDir)packages\$(Version)</PackageOutputPath>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(SolutionDir)LICENSE.txt" Pack="true" PackagePath="." />
+        <None Include="$(SolutionDir)docs\images\logo.png" Pack="true" PackagePath="." />
+    </ItemGroup>
+
+    <Choose>
+        <When Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+            <PropertyGroup>
+                <MSBuildTreatWarningsAsErrors>false</MSBuildTreatWarningsAsErrors>
+                <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+            </PropertyGroup>
+        </When>
+        <When Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+            <PropertyGroup>
+                <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
+                <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+            </PropertyGroup>
+        </When>
+        <Otherwise>
+            <PropertyGroup>
+                <ConfigurationErrorMsg>You need to configure variables [$(Configuration)] or [$(Platform)] in your solution.</ConfigurationErrorMsg>
+            </PropertyGroup>
+        </Otherwise>
+    </Choose>
+
+    <!-- Optimize 
+      
+      - DebugSymbols (bool): Generate pdb file. 
+      
+      - DebugType (full | pdbonly | portable | embedded | none): Level of debug information to generation. 
+      
+      - Optimize (bool): Compiler optimization. 
+      
+      - DefineConstants: Define some compiler conditional constants. Ex:
+        
+        <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(TargetFramework)', '^net\d'))">
+          <DefineConstants>NETFRAMEWORK</DefineConstants>
+        </PropertyGroup>
+        <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(TargetFramework)', '^netstandard\d'))">
+          <DefineConstants>NETSTANDARD</DefineConstants>
+        </PropertyGroup>
+        <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(TargetFramework)', '^netcoreapp\d'))">
+          <DefineConstants>NETCORE</DefineConstants>
+        </PropertyGroup>
+        
+        #if NETFRAMEWORK
+            FrameworkSpecific();
+        #endif
+  
+        #if NETSTANDARD
+            StandardSpecific();
+        #endif
+  
+        #if NETCORE
+            CoreSpecific();
+        #endif
+      
+      -->
+    <Choose>
+        <When Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+            <PropertyGroup>
+                <DebugSymbols>true</DebugSymbols>
+                <DebugType>full</DebugType>
+                <Optimize>false</Optimize>
+                <DefineConstants>DEBUG;TRACE</DefineConstants>
+            </PropertyGroup>
+        </When>
+        <When Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+            <PropertyGroup>
+                <DebugSymbols>false</DebugSymbols>
+                <DebugType>none</DebugType>
+                <Optimize>true</Optimize>
+                <DefineConstants>TRACE</DefineConstants>
+            </PropertyGroup>
+        </When>
+        <Otherwise>
+            <PropertyGroup>
+                <ConfigurationErrorMsg>You need to configure variables [$(Configuration)] or [$(Platform)] in your solution.</ConfigurationErrorMsg>
+            </PropertyGroup>
+        </Otherwise>
+    </Choose>
+
+    <!-- Documentation -->
+    <PropertyGroup Condition=" '$(IsTestsProject)' == 'false' ">
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+</Project>

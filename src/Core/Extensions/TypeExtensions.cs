@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace Orun.Extensions
 {
+    /// <summary>
+    /// <see cref="Type"/> extensions
+    /// </summary>
     public static class TypeExtensions
     {
         /// <summary>

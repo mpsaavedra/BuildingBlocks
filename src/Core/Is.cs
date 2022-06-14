@@ -60,7 +60,7 @@ namespace Orun
         /// <typeparam name="TSource"></typeparam>
         /// <returns></returns>
         public static TSource IsNullOrEmpty<TSource>(this TSource source, string message) =>
-            source.Throw(() => NullOrEmpty(source), message);
+            source.Throw(() => NullOrEmpty(source!), message);
 
         /// <summary>
         /// if source is null use set the optional value
@@ -71,7 +71,7 @@ namespace Orun
         /// <returns></returns>
         public static TSource ThenIfNullOrEmpty<TSource>(this TSource source, TSource optional)
         {
-            if (NullOrEmpty(source))
+            if (NullOrEmpty(source!))
                 return optional;
             if (!source.IsNullable())
                 return source;
@@ -121,14 +121,13 @@ namespace Orun
 
         /// <summary>
         /// check if any of provided values is null or has a null value, if true it will
-        /// launch an exception with the provided message.
+        /// launch an exception
         /// </summary>
         /// <param name="source"></param>
-        /// <param name="message"></param>
         /// <typeparam name="TSource"></typeparam>
         /// <returns></returns>
         public static TSource IsNullOrAnyNull<TSource>(this TSource source) =>
-            source.Throw(() => Is.NullOrAnyNull(source), 
+            source.Throw(() => Is.NullOrAnyNull(source!), 
                 $"{nameof(source)} could not be null or contain a null value");
 
         /// <summary>
@@ -140,7 +139,7 @@ namespace Orun
         /// <typeparam name="TSource"></typeparam>
         /// <returns></returns>
         public static TSource IsNullOrAnyNull<TSource>(this TSource source, string message) =>
-            source.Throw(() => Is.NullOrAnyNull(source), message);
+            source.Throw(() => Is.NullOrAnyNull(source!), message);
 
         /// <summary>
         /// Check if the source and predicate are not null, that the result of the

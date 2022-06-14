@@ -59,7 +59,7 @@ namespace Orun.Extensions
                                         prop.Name.ToLower() == "id" ||
                                         prop.Name.ToLower().EndsWith(entity.GetType().Name.ToLower() + "id"));
             if (prop != null)
-                return (TKey)prop.GetValue(entity);
+                return (TKey)prop.GetValue(entity)!;
             return default(TKey)!;
         }
     }
