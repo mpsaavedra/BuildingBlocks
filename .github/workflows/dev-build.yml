@@ -1,0 +1,20 @@
+name: Development branch
+on:
+  push: 
+    branches:[ dev ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      dotnet-version: [ '6.0.x' ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .Net ${{ matrix.dotnet-version  }}
+      with:
+        dotnet-version ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuratin Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
